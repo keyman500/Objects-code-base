@@ -17,6 +17,9 @@ public class OOP2Project {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello World!");
+        
+        AdvisingGUI gui = new AdvisingGUI();
+        gui.setVisible(true);
     }
     
 }
