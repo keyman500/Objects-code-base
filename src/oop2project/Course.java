@@ -2,6 +2,7 @@ package oop2project;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -36,6 +37,11 @@ public class Course implements Requirement {
     	return missingCourses;
     }
 
+    @Override
+    public boolean addSubRequirement(Requirement requirement) {
+        return false;
+    }
+
     public boolean hasFulfilledPrerequisites(List<Course> coursesCompleted) {
     	return this.prerequisites.isFulfilledBy(coursesCompleted);
     }
@@ -52,7 +58,14 @@ public class Course implements Requirement {
         if (!(o instanceof Course)) {
             return false;
         }
-        Course c = (Complex) o;
-        return this.courseCode == c.courseCode;
+        Course c = (Course) o;
+        return this.courseCode.equals(c.courseCode);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.courseCode);
+        return hash;
     }
 }
