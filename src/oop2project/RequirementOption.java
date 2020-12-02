@@ -37,8 +37,16 @@ public class RequirementOption implements Requirement {
     }
 
     @Override
-    public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Requirement getMissingComponents(List<Course> coursesCompleted) {
+        if (this.isFulfilledBy(coursesCompleted)) {
+            return new NoRequirement();
+        }
+        int missingCredits = this.requiredCredits - this.getCreditsFulfilled(coursesCompleted);
+        Requirement missingRequirements = new RequirementOption(missingCredits);
+        this.options.stream()
+                .filter(o -> !o.isFulfilledBy(coursesCompleted))
+                .forEach(o -> missingRequirements.addSubRequirement(o));
+        return missingRequirements;
     }
 
     @Override

@@ -38,12 +38,12 @@ public class Course implements Requirement {
     }
     
     @Override
-    public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
-    	List<Requirement> missingCourses = new ArrayList<>();
-    	if (!coursesCompleted.contains(this)) {
-    		missingCourses.add(this);
-    	}
-    	return missingCourses;
+    public Requirement getMissingComponents(List<Course> coursesCompleted) {
+    	if (this.isFulfilledBy(coursesCompleted)) {
+            return new NoRequirement();
+    	} else {
+            return this;
+        }
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Course implements Requirement {
     	return this.prerequisites.isFulfilledBy(coursesCompleted);
     }
 
-    public List<Requirement> getMissingPrerequisites(List<Course> coursesCompleted) {
+    public Requirement getMissingPrerequisites(List<Course> coursesCompleted) {
     	return this.prerequisites.getMissingComponents(coursesCompleted);
     }
 

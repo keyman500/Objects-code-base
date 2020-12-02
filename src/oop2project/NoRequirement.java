@@ -20,8 +20,8 @@ public class NoRequirement implements Requirement {
     }
 
     @Override
-    public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
-        return new ArrayList<>();
+    public Requirement getMissingComponents(List<Course> coursesCompleted) {
+        return this;
     }
 
     @Override

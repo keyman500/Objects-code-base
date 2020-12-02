@@ -27,12 +27,15 @@ public class RequirementList implements Requirement {
     }
 
     @Override
-    public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
-        List<Requirement> missingComponents = new ArrayList<>();
-        this.subrequirements.forEach(req -> {
-            missingComponents.addAll(req.getMissingComponents(coursesCompleted));
-        });
-        return missingComponents;
+    public Requirement getMissingComponents(List<Course> coursesCompleted) {
+        if (this.isFulfilledBy(coursesCompleted)) {
+            return new NoRequirement();
+        }
+        Requirement missingRequirements = new RequirementList();
+        this.subrequirements.forEach(r ->
+                missingRequirements.addSubRequirement(
+                        r.getMissingComponents(coursesCompleted)));
+        return missingRequirements;
     }
 
     @Override
