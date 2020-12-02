@@ -29,6 +29,15 @@ public class Course implements Requirement {
     }
 
     @Override
+    public int getCreditsFulfilled(List<Course> coursesCompleted) {
+        if (this.isFulfilledBy(coursesCompleted)) {
+            return this.credits;
+        } else {
+            return 0;
+        }
+    }
+    
+    @Override
     public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
     	List<Requirement> missingCourses = new ArrayList<>();
     	if (!coursesCompleted.contains(this)) {
@@ -68,4 +77,5 @@ public class Course implements Requirement {
         hash = 79 * hash + Objects.hashCode(this.courseCode);
         return hash;
     }
+
 }

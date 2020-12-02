@@ -18,6 +18,13 @@ public class RequirementList implements Requirement {
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
         return this.subrequirements.stream().allMatch(r -> r.isFulfilledBy(coursesCompleted));
     }
+    
+    @Override
+    public int getCreditsFulfilled(List<Course> coursesCompleted) {
+        return this.subrequirements.stream()
+                .map(r -> r.getCreditsFulfilled(coursesCompleted))
+                .reduce(0, (a, b) -> a + b);
+    }
 
     @Override
     public List<Requirement> getMissingComponents(List<Course> coursesCompleted) {
