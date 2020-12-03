@@ -9,19 +9,20 @@ import java.util.Objects;
  * @author Dion Recai
  */
 public class Course implements Requirement {
-	private String courseCode;
-	private String courseTitle;
-	private int credits;
-	private int level;
-	private Requirement prerequisites;
-	private int[] availableSemesters;
+    private String courseCode;
+    private String courseTitle;
+    private int credits;
+    private int level;
+    private Requirement prerequisites;
+    private int[] availableSemesters;
 
-	private Course(String courseCode, String courseTitle, int credits, int level) {
-		this.courseCode = courseCode;
-		this.courseTitle = courseTitle;
-		this.credits = credits;
-		this.level = level;
-	}
+    public Course(String courseCode, String courseTitle, int credits, int level, int[] semesters) {
+            this.courseCode = courseCode;
+            this.courseTitle = courseTitle;
+            this.credits = credits;
+            this.level = level;
+            this.availableSemesters = semesters;
+    }
 
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
@@ -49,6 +50,10 @@ public class Course implements Requirement {
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         return false;
+    }
+    
+    public void addPrerequisite(Requirement prerequisite) {
+        this.prerequisites.addSubRequirement(prerequisite);
     }
 
     public boolean hasFulfilledPrerequisites(List<Course> coursesCompleted) {
