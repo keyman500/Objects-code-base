@@ -23,6 +23,7 @@ public class CourseCatalog {
                 catalog = new CourseCatalog(fileName);
                 return true;
             } catch (FileNotFoundException error) {
+                System.out.println(error.getMessage());
                 catalog = null;
             }
         }
@@ -31,6 +32,10 @@ public class CourseCatalog {
     
     public static CourseCatalog getCatalog() {
         return catalog;
+    }
+    
+    public List<Course> getAllCourses() {
+        return new ArrayList<>(this.courses.values());
     }
     
     private CourseCatalog(String fileName) throws FileNotFoundException {
@@ -57,6 +62,7 @@ public class CourseCatalog {
             for (int i = 0; i < numSemesters; i++)
                 availableSemesters[i] = scanner.nextInt();
             Course course = new Course(courseCode, courseName, credits, level, availableSemesters);
+            this.courses.put(courseCode, course);
             prerequisites.put(course, new ArrayList<>());
             for (int i = 0; i < numPrerequisites; i++)
                 prerequisites.get(course).add(scanner.next());

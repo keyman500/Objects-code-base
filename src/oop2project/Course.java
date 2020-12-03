@@ -22,6 +22,11 @@ public class Course implements Requirement {
             this.credits = credits;
             this.level = level;
             this.availableSemesters = semesters;
+            this.prerequisites = new RequirementList();
+    }
+    
+    public String getCodeAndTitle() {
+        return this.courseCode + " " + this.courseTitle;
     }
 
     @Override
