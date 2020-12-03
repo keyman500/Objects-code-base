@@ -11,4 +11,6 @@ public interface Requirement {
     public int getCreditsFulfilled(List<Course> coursesCompleted);
     public Requirement getMissingComponents(List<Course> coursesCompleted);
     public boolean addSubRequirement(Requirement requirement);
+    public List<Course> getCompulsoryCourses();
+    public List<Course> getOptionalCourses();
 }

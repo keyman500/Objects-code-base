@@ -1,5 +1,6 @@
 package oop2project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,4 +56,18 @@ public class RequirementOption implements Requirement {
         return true;
     }
     
+    @Override
+    public List<Course> getCompulsoryCourses() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Course> getOptionalCourses() {
+        List<Course> courses = new ArrayList<>();
+        for (Requirement requirement : this.options) {
+            courses.addAll(requirement.getCompulsoryCourses());
+            courses.addAll(requirement.getOptionalCourses());
+        }
+        return courses;
+    }
 }
