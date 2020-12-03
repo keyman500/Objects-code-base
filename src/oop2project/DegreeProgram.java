@@ -19,7 +19,7 @@ public class DegreeProgram extends RequirementList {
         return this.name;
     }
     
-    public static DegreeProgram getDegreeProgramCSMajor() {
+    public static DegreeProgram getDegreeProgramCSMajor(CourseCatalog catalog) {
         if (CS_MAJOR == null) {
             CS_MAJOR = new DegreeProgram("Major in Computer Science");
             String requiredCourses[] = {
@@ -27,7 +27,7 @@ public class DegreeProgram extends RequirementList {
                 "COMP2602", "COMP2605", "COMP2611", "COMP2603", "COMP2604"
             };
             for (String code : requiredCourses)
-                CS_MAJOR.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+                CS_MAJOR.addSubRequirement(catalog.getCourseByCode(code));
             String electiveCourses[] = {
                 "COMP3602", "COMP3603", "COMP3605", "COMP3606", "COMP3607",
                 "COMP3613", "INFO2605", "INFO3600", "INFO3605", "MATH2250",
@@ -37,13 +37,13 @@ public class DegreeProgram extends RequirementList {
             };
             Requirement electives = new RequirementOption(12);
             for (String code : electiveCourses)
-                electives.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+                electives.addSubRequirement(catalog.getCourseByCode(code));
             CS_MAJOR.addSubRequirement(electives);
         }
         return CS_MAJOR;
     }
     
-    public static DegreeProgram getDegreeProgramITMajor() {
+    public static DegreeProgram getDegreeProgramITMajor(CourseCatalog catalog) {
         if (IT_MAJOR == null) {
             IT_MAJOR = new DegreeProgram("Major in Computer Science");
             String requiredCourses[] = {
@@ -51,29 +51,27 @@ public class DegreeProgram extends RequirementList {
                 "INFO2602", "COMP2605", "INFO2600", "INFO2603", "INFO2604"
             };
             for (String code : requiredCourses)
-                IT_MAJOR.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+                IT_MAJOR.addSubRequirement(catalog.getCourseByCode(code));
             String electiveCourses[] = {
                 "COMP3605", "INFO2605", "INFO3605", "MATH2250", "COMP3610",
                 "INFO3606", "INFO3607", "INFO3608", "INFO3609", "INFO3610"
             };
             Requirement electives = new RequirementOption(12);
             for (String code : electiveCourses)
-                electives.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+                electives.addSubRequirement(catalog.getCourseByCode(code));
             IT_MAJOR.addSubRequirement(electives);
         }
         return IT_MAJOR;
     }
     
-    public static DegreeProgram getDegreeProgramAMajor() {
+    public static DegreeProgram getDegreeProgramAMajor(CourseCatalog catalog) {
         if (A_MAJOR == null) {
             A_MAJOR = new DegreeProgram("Test Major");
             String requiredCourses[] = {
                 "COMP1600", "COMP1601"
             };
             for (String code : requiredCourses) {
-                Course course = CourseCatalog.getCatalog().getCourseByCode(code);
-                if (course == null)
-                    System.out.println("XXXXXXXXXXX");
+                Course course = catalog.getCourseByCode(code);
                 A_MAJOR.addSubRequirement(course);
             }
             String electiveCourses[] = {
@@ -81,9 +79,7 @@ public class DegreeProgram extends RequirementList {
             };
             Requirement electives = new RequirementOption(3);
             for (String code : electiveCourses) {
-                Course course = CourseCatalog.getCatalog().getCourseByCode(code);
-                if (course == null)
-                    System.out.println(code + "XXXXXXXXXXX");
+                Course course = catalog.getCourseByCode(code);
                 electives.addSubRequirement(course);
             }
             A_MAJOR.addSubRequirement(electives);

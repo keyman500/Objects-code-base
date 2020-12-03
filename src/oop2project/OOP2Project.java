@@ -5,8 +5,11 @@
  */
 package oop2project;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 /**
  *
  * @author David
@@ -16,15 +19,15 @@ public class OOP2Project {
     private Recommender recommender;
     private AdvisingGUI gui;
     
-    public OOP2Project() {
-        CourseCatalog.setCatalog("src\\oop2project\\catalog.txt");
-        this.catalog = CourseCatalog.getCatalog();
-        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor());
-        List<Course> coursesCompleted = new ArrayList<>();
-        coursesCompleted.add(this.catalog.getCourseByCode("COMP1600"));
-        this.recommender.setSemester(2);
-        this.recommender.setCoursesCompleted(coursesCompleted);
-        System.out.println(this.recommender.getRecommendations());
+    public OOP2Project(String filePath) {
+        CatalogReader reader;
+        try {
+            reader = new CatalogReader(new Scanner(new File(filePath)));
+        } catch (FileNotFoundException error) {
+            return;
+        }
+        this.catalog = new CourseCatalog(reader.readAndGetCourses());
+        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor(this.catalog));
         this.gui = new AdvisingGUI();
         this.gui.setVisible(true);
     }
@@ -35,7 +38,7 @@ public class OOP2Project {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello World!");
-        new OOP2Project();
+        new OOP2Project("src\\oop2project\\catalog.txt");
     }
     
 }

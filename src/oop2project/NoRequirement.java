@@ -2,6 +2,8 @@ package oop2project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -30,13 +32,13 @@ public class NoRequirement implements Requirement {
     }
     
     @Override
-    public List<Course> getCompulsoryCourses() {
-        return new ArrayList<>();
+    public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
+        return new HashSet<>();
     }
 
     @Override
-    public List<Course> getOptionalCourses() {
-        return new ArrayList<>();
+    public Set<Course> getMissingOptionalCourses(List<Course> coursesCompleted) {
+        return new HashSet<>();
     }
     
 }
