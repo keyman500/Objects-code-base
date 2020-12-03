@@ -13,27 +13,26 @@ public class RequirementOption implements Requirement {
     
     public RequirementOption(int credits) {
         this.requiredCredits = credits;
+        this.options = new ArrayList<>();
     }
 
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
-        int creditsFulfilled = this.options.stream()
-                .filter(r -> r.isFulfilledBy(coursesCompleted))
-                .map(r -> r.getCreditsFulfilled(coursesCompleted))
-                .reduce(0, (a, b) -> a + b);
-        return creditsFulfilled > this.requiredCredits;
+        return this.getCreditsFulfilled(coursesCompleted) == this.requiredCredits;
     }
 
     @Override
     public int getCreditsFulfilled(List<Course> coursesCompleted) {
-        int creditsFulfilled = this.options.stream()
-                .filter(r -> r.isFulfilledBy(coursesCompleted))
-                .map(r -> r.getCreditsFulfilled(coursesCompleted))
-                .reduce(0, (a, b) -> a + b);
-        if (creditsFulfilled >= this.requiredCredits) {
+        int fulfilledCredits = 0;
+        for (Requirement requirement : this.options) {
+            if (requirement.isFulfilledBy(coursesCompleted)) {
+                fulfilledCredits += requirement.getCreditsFulfilled(coursesCompleted);
+            }
+        }
+        if (fulfilledCredits >= this.requiredCredits) {
             return this.requiredCredits;
         } else {
-            return creditsFulfilled;
+            return fulfilledCredits;
         }
     }
 

@@ -7,6 +7,7 @@ package oop2project;
 public class DegreeProgram extends RequirementList {
     private static DegreeProgram CS_MAJOR;
     private static DegreeProgram IT_MAJOR;
+    private static DegreeProgram A_MAJOR;
     private String name;
     
     private DegreeProgram(String name) {
@@ -61,5 +62,32 @@ public class DegreeProgram extends RequirementList {
             IT_MAJOR.addSubRequirement(electives);
         }
         return IT_MAJOR;
+    }
+    
+    public static DegreeProgram getDegreeProgramAMajor() {
+        if (A_MAJOR == null) {
+            A_MAJOR = new DegreeProgram("Test Major");
+            String requiredCourses[] = {
+                "COMP1600", "COMP1601"
+            };
+            for (String code : requiredCourses) {
+                Course course = CourseCatalog.getCatalog().getCourseByCode(code);
+                if (course == null)
+                    System.out.println("XXXXXXXXXXX");
+                A_MAJOR.addSubRequirement(course);
+            }
+            String electiveCourses[] = {
+                "COMP1602", "COMP1603"
+            };
+            Requirement electives = new RequirementOption(3);
+            for (String code : electiveCourses) {
+                Course course = CourseCatalog.getCatalog().getCourseByCode(code);
+                if (course == null)
+                    System.out.println(code + "XXXXXXXXXXX");
+                electives.addSubRequirement(course);
+            }
+            A_MAJOR.addSubRequirement(electives);
+        }
+        return A_MAJOR;
     }
 }

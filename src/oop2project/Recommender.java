@@ -34,10 +34,15 @@ public class Recommender {
         List<Course> missingOptionalCourses = missingRequirements.getOptionalCourses();
         Collections.sort(missingCourses, new CoursesLevelComparator());
         Collections.sort(missingOptionalCourses, new CoursesLevelComparator());
-        missingCourses.addAll(missingOptionalCourses.subList(0, 6-missingCourses.size()));
-        String results = "Recommended Courses For You:\n";
-        for (Course course : missingCourses.subList(0, 6))
-            results += course.getCodeAndTitle() + "\n";
+        int i = 0;
+        while (missingCourses.size() < 6 && i < missingOptionalCourses.size()) {
+            missingCourses.add(missingOptionalCourses.get(i));
+        }
+        String results = "Recommended Courses For You:\n"
+                + missingCourses.stream().limit(6)
+                        .filter(course -> course.isAvailableIn(this.semester))
+                        .map(course -> course.getCodeAndTitle() + "\n")
+                        .reduce("", (a, b) -> String.join(a, b));
         return results;
     }
 }

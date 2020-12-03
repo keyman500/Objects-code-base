@@ -5,6 +5,8 @@
  */
 package oop2project;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author David
@@ -17,6 +19,12 @@ public class OOP2Project {
     public OOP2Project() {
         CourseCatalog.setCatalog("src\\oop2project\\catalog.txt");
         this.catalog = CourseCatalog.getCatalog();
+        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor());
+        List<Course> coursesCompleted = new ArrayList<>();
+        coursesCompleted.add(this.catalog.getCourseByCode("COMP1600"));
+        this.recommender.setSemester(2);
+        this.recommender.setCoursesCompleted(coursesCompleted);
+        System.out.println(this.recommender.getRecommendations());
         this.gui = new AdvisingGUI();
         this.gui.setVisible(true);
     }
