@@ -14,6 +14,10 @@ public class DegreeProgram extends RequirementList {
         this.name = name;
     }
     
+    public String getName() {
+        return this.name;
+    }
+    
     public static DegreeProgram getDegreeProgramCSMajor() {
         if (CS_MAJOR == null) {
             CS_MAJOR = new DegreeProgram("Major in Computer Science");
