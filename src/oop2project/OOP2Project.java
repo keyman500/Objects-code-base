@@ -22,6 +22,7 @@ public class OOP2Project {
         this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor());
         List<Course> coursesCompleted = new ArrayList<>();
         coursesCompleted.add(this.catalog.getCourseByCode("COMP1600"));
+        coursesCompleted.add(this.catalog.getCourseByCode("COMP1601"));
         this.recommender.setSemester(2);
         this.recommender.setCoursesCompleted(coursesCompleted);
         System.out.println(this.recommender.getRecommendations());

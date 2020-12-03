@@ -1,7 +1,9 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -56,16 +58,16 @@ public class RequirementOption implements Requirement {
     }
     
     @Override
-    public List<Course> getCompulsoryCourses() {
-        return new ArrayList<>();
+    public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
+        return new HashSet<>();
     }
 
     @Override
-    public List<Course> getOptionalCourses() {
-        List<Course> courses = new ArrayList<>();
+    public Set<Course> getMissingOptionalCourses(List<Course> coursesCompleted) {
+        Set<Course> courses = new HashSet<>();
         for (Requirement requirement : this.options) {
-            courses.addAll(requirement.getCompulsoryCourses());
-            courses.addAll(requirement.getOptionalCourses());
+            courses.addAll(requirement.getMissingCompulsoryCourses(coursesCompleted));
+            courses.addAll(requirement.getMissingOptionalCourses(coursesCompleted));
         }
         return courses;
     }
