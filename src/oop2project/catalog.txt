@@ -1,160 +1,34 @@
 COMP1600 Intro to Computing
-3 1 1 0
-1
+3 1
+1 1
+0
 
 COMP1601 Computer Programming 1
-3 1 3 0
-1 2 3
+3 1
+3 1 2 3
+0
 
 COMP1602 Computer Programming 2
-3 1 2 0
-2 3
+3 1
+2 2 3
+0
 
 COMP1603 Computer Programming 3
-3 1 2 0
-2 3
+3 1
+2 2 3
+0
 
 COMP2601 Computer Architecture
-3 2 1 1
-1
-COMP1600
+3 2
+1 1
+1 COMP1600
 
 COMP2602 Computer Networks
-3 2 1 1
-1
-COMP1600
+3 2
+1 1
+1 COMP1600
 
 COMP2603 Object Oriented Programming 1
-3 2 1 1
-2
-COMP1603
-
-COMP2604 Operating Systems
-3 2 1 1
-2
-COMP1600
-
-COMP2605 Enterprise Database Systems
-3 2 2 1
-1 3
-COMP1602
-
-COMP2606 Software Engineering 1
-3 2 1 1
-2
-COMP1603
-
-COMP2611 Data Structures
-3 2 1 1
-1
-COMP1603
-
-COMP3601 Design and Analysis Of Algorithms
-3 3 1 1
-2
-COMP2611
-
-COMP3602 Theory of Computing
-3 3 1 1
-1
-COMP2611
-
-COMP3603 Human Computer Interaction
-3 3 1 1
-1
-COMP2606
-
-COMP3605 Introduction to Data Analytics
-3 3 1 1
-1
-MATH2250
-
-COMP3606 Wireless and Mobile Computing
-3 3 1 1
-1
-COMP2602
-
-COMP3607 Object Oriented Programming 2
-3 3 1 1
-1
-COMP2603
-
-COMP3609 Game Programming
-3 3 1 2
-2
-COMP2603 COMP2606
-
-COMP3610 Big Data Analytics
-3 3 1 1
-2
-COMP3605
-
-COMP3611 Modelling and Simulation
-3 3 1 1
-2
-MATH2250
-
-COMP3613 Software Engineering 2
-3 3 1 1
-1
-COMP2606
-
-FOUN1101 Caribbean Civilisation
-3 1 2 0
+3 2
 1 2
-
-FOUN1105 Scientific and Technical Writing
-3 1 1 0
-2
-
-FOUN1301 Law Governance Economy and Society
-3 1 2 0
-1 2
-
-INFO1600 Introduction to Information Technology
-3 1 1 0
-1
-
-INFO1601 Introduction to WWW Programming
-3 1 1 0
-2
-
-INFO2600 Information Systems Development
-3 2 1 1
-2
-INFO1600
-
-INFO2601 Networking Technologies Fundamentals
-3 2 1 1
-1
-INFO1600
-
-INFO2602 Web Programming and Technologies 1
-3 2 1 1
-2
-INFO1601
-
-INFO2603 Platform Technologies 1
-3 2 1 1
-1
-INFO1600
-
-INFO2604 Information Systems Security
-3 2 1 1
-2
-COMP1602
-
-INFO2605 Professional Ethics and Law
-3 2 1 1
-1
-INFO1600
-
-INFO3600 Business Information Systems
-3 3 1 1
-1
-COMP2605
-
-MATH2250 Industrial Statistics
-3 2 2 0
-1 3
-
+1 COMP1603
