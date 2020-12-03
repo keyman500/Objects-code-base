@@ -10,6 +10,16 @@ package oop2project;
  * @author David
  */
 public class OOP2Project {
+    private CourseCatalog catalog;
+    private Recommender recommender;
+    private AdvisingGUI gui;
+    
+    public OOP2Project() {
+        CourseCatalog.setCatalog("src\\oop2project\\catalog.txt");
+        this.catalog = CourseCatalog.getCatalog();
+        this.gui = new AdvisingGUI();
+        this.gui.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -17,9 +27,7 @@ public class OOP2Project {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello World!");
-        
-        AdvisingGUI gui = new AdvisingGUI();
-        gui.setVisible(true);
+        new OOP2Project();
     }
     
 }
