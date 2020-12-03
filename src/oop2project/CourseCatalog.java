@@ -13,9 +13,27 @@ import java.util.Scanner;
  * @author Dion Recai
  */
 public class CourseCatalog {
+    private static CourseCatalog catalog;
+    
     private Map<String, Course> courses;
     
-    public CourseCatalog(String fileName) throws FileNotFoundException {
+    public static boolean setCatalog(String fileName) {
+        if (catalog == null) {
+            try {
+                catalog = new CourseCatalog(fileName);
+                return true;
+            } catch (FileNotFoundException error) {
+                catalog = null;
+            }
+        }
+        return false;
+    }
+    
+    public static CourseCatalog getCatalog() {
+        return catalog;
+    }
+    
+    private CourseCatalog(String fileName) throws FileNotFoundException {
         this.courses = new HashMap<>();
         this.readFileData(fileName);
     }
