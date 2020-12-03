@@ -5,6 +5,11 @@
  */
 package oop2project;
 
+import javax.swing.ListSelectionModel;
+
+
+
+
 /**
  *
  * @author David
@@ -27,18 +32,20 @@ public class AdvisingGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         parentPanel = new javax.swing.JPanel();
         frontPanel = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         backPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -62,6 +69,11 @@ public class AdvisingGUI extends javax.swing.JFrame {
         parentPanel.setLayout(new java.awt.CardLayout());
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Degree Program", "BSc General: Major in Computer Science", "BSc General: Major in Information Technology" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Continue");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -70,23 +82,30 @@ public class AdvisingGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Choose the course you have already done");
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("2");
+
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setText("3");
+
+        jLabel4.setText("Semester:");
+
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        jLabel2.setText("Choose the course you have already done");
-
-        jLabel3.setText("Course chosing");
 
         javax.swing.GroupLayout frontPanelLayout = new javax.swing.GroupLayout(frontPanel);
         frontPanel.setLayout(frontPanelLayout);
@@ -100,35 +119,39 @@ public class AdvisingGUI extends javax.swing.JFrame {
                 .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(frontPanelLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(frontPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(122, 122, 122)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(frontPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(71, 71, 71))))
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(123, 123, 123)
+                                .addComponent(jLabel4)
+                                .addGap(26, 26, 26)
+                                .addComponent(jRadioButton1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton3))
                     .addGroup(frontPanelLayout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel2)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         frontPanelLayout.setVerticalGroup(
             frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(frontPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(frontPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButton3)
+                        .addComponent(jRadioButton2)
+                        .addComponent(jRadioButton1)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -176,7 +199,7 @@ public class AdvisingGUI extends javax.swing.JFrame {
                     .addGroup(backPanelLayout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         backPanelLayout.setVerticalGroup(
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,6 +261,14 @@ public class AdvisingGUI extends javax.swing.JFrame {
         parentPanel.revalidate();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,6 +306,7 @@ public class AdvisingGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backPanel;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel frontPanel;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -282,13 +314,14 @@ public class AdvisingGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel parentPanel;
