@@ -1,5 +1,7 @@
 package oop2project;
 
+import java.util.List;
+
 /**
  *
  * @author Dion Recai
@@ -9,6 +11,6 @@ public interface AdvisorFacade {
 	public void setDegree(DegreeProgram degree);
 	public void setSemester(int semester);
 	public List<Course> getCourses();
-	public setCoursesDone(List<Course>);
+	public void setCoursesDone(List<Course> courses);
 	public String getRecommendation();
 }

@@ -28,6 +28,17 @@ public class Course implements Requirement {
     public String getCodeAndTitle() {
         return this.courseCode + " " + this.courseTitle;
     }
+    
+    public int getLevel() {
+        return this.level;
+    }
+    
+    public boolean isAvailableIn(int semester) {
+        for (int i = 0; i < this.availableSemesters.length; i++)
+            if (this.availableSemesters[i] == semester)
+                return true;
+        return false;
+    }
 
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
@@ -55,6 +66,26 @@ public class Course implements Requirement {
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         return false;
+    }
+    
+    @Override
+    public List<Course> getCompulsoryCourses() {
+        List<Course> courses = new ArrayList<>();
+        courses.add(this);
+        for (Course course : this.prerequisites.getCompulsoryCourses()) {
+            courses.addAll(course.getCompulsoryCourses());
+        }
+        return courses;
+    }
+    
+    @Override
+    public List<Course> getOptionalCourses() {
+        List<Course> courses = new ArrayList<>();
+        for (Course course : this.prerequisites.getOptionalCourses()) {
+            courses.addAll(course.getCompulsoryCourses());
+            courses.addAll(course.getOptionalCourses());
+        }
+        return courses;
     }
     
     public void addPrerequisite(Requirement prerequisite) {

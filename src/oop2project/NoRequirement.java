@@ -29,4 +29,14 @@ public class NoRequirement implements Requirement {
         return false;
     }
     
+    @Override
+    public List<Course> getCompulsoryCourses() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Course> getOptionalCourses() {
+        return new ArrayList<>();
+    }
+    
 }
