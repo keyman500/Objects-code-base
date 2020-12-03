@@ -43,4 +43,22 @@ public class RequirementList implements Requirement {
         this.subrequirements.add(requirement);
         return true;
     }
+    
+    @Override
+    public List<Course> getCompulsoryCourses() {
+        List<Course> courses = new ArrayList<>();
+        for (Requirement requirement : this.subrequirements) {
+            courses.addAll(requirement.getCompulsoryCourses());
+        }
+        return courses;
+    }
+
+    @Override
+    public List<Course> getOptionalCourses() {
+        List<Course> courses = new ArrayList<>();
+        for (Requirement requirement : this.subrequirements) {
+            courses.addAll(requirement.getOptionalCourses());
+        }
+        return courses;
+    }
 }
