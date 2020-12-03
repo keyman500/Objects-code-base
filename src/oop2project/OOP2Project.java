@@ -27,14 +27,7 @@ public class OOP2Project {
             return;
         }
         this.catalog = new CourseCatalog(reader.readAndGetCourses());
-        this.catalog.getAllCourses().forEach(c -> System.out.println(c.getCodeAndTitle()));
         this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor(this.catalog));
-        List<Course> coursesCompleted = new ArrayList<>();
-        coursesCompleted.add(this.catalog.getCourseByCode("COMP1600"));
-        coursesCompleted.add(this.catalog.getCourseByCode("COMP1601"));
-        this.recommender.setSemester(2);
-        this.recommender.setCoursesCompleted(coursesCompleted);
-        System.out.println(this.recommender.getRecommendations());
         this.gui = new AdvisingGUI();
         this.gui.setVisible(true);
     }

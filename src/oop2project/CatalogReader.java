@@ -33,36 +33,27 @@ public class CatalogReader {
     
     private void readOneCourse() {
         String courseCode = this.scanner.next();
-        System.out.println(courseCode);
         String courseName = this.scanner.nextLine().trim();
-        System.out.println(courseName);
         int credits = this.scanner.nextInt();
-        System.out.println(credits);
         int level = this.scanner.nextInt();
-        System.out.println(level);
         int numSemesters = this.scanner.nextInt();
-        System.out.println(numSemesters);
         int[] availableSemesters = new int[numSemesters];
         for (int i = 0; i < numSemesters; i++)
             availableSemesters[i] = this.scanner.nextInt();
         Course course = new Course(courseCode, courseName, credits, level, availableSemesters);
         this.courses.put(courseCode, course);
-        int numPrereqs = this.scanner.nextInt();
-        System.out.println(numPrereqs);
-        this.numPrerequisites.put(course, numPrereqs);
+        int numPrerequisiteCredits = this.scanner.nextInt();
+        this.numPrerequisites.put(course, numPrerequisiteCredits);
         this.prerequisites.put(course, new ArrayList<>());
-        if (numPrereqs > 0)
+        if (numPrerequisiteCredits > 0)
             for (String prerequisite : scanner.nextLine().trim().split(" "))
                 prerequisites.get(course).add(prerequisite);
     }
     
     private void setPrerequisites(Course course) {
-        Requirement prereqs = new RequirementOption(3 * this.numPrerequisites.get(course));
+        Requirement prereqs = new RequirementOption(this.numPrerequisites.get(course));
         for (String prereq : this.prerequisites.get(course)) {
-            if (!this.courses.containsKey(prereq))
-                System.out.println("XXXXXXXXXXXXXX");
-            else
-                prereqs.addSubRequirement(this.courses.get(prereq));
+            prereqs.addSubRequirement(this.courses.get(prereq));
         }
         course.addPrerequisite(prereqs);
     }

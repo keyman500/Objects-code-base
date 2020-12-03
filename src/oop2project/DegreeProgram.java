@@ -72,8 +72,6 @@ public class DegreeProgram extends RequirementList {
             };
             for (String code : requiredCourses) {
                 Course course = catalog.getCourseByCode(code);
-                if (course == null)
-                    System.out.println("XXXXXXXXXXX");
                 A_MAJOR.addSubRequirement(course);
             }
             String electiveCourses[] = {
@@ -82,8 +80,6 @@ public class DegreeProgram extends RequirementList {
             Requirement electives = new RequirementOption(3);
             for (String code : electiveCourses) {
                 Course course = catalog.getCourseByCode(code);
-                if (course == null)
-                    System.out.println(code + "XXXXXXXXXXX");
                 electives.addSubRequirement(course);
             }
             A_MAJOR.addSubRequirement(electives);
