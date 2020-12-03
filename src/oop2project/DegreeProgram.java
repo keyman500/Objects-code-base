@@ -19,14 +19,14 @@ public class DegreeProgram extends RequirementList {
             CS_MAJOR = new DegreeProgram("Major in Computer Science");
             String requiredCourses[] = {
                 "COMP1600", "COMP1601", "COMP1602", "COMP1603", "COMP2601",
-                "COMP1602", "COMP2605", "COMP2611", "COMP2603", "COMP2604"
+                "COMP2602", "COMP2605", "COMP2611", "COMP2603", "COMP2604"
             };
             for (String code : requiredCourses)
                 CS_MAJOR.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
             String electiveCourses[] = {
                 "COMP3602", "COMP3603", "COMP3605", "COMP3606", "COMP3607",
                 "COMP3613", "INFO2605", "INFO3600", "INFO3605", "MATH2250",
-                "COMP2602", "COMP3601", "COMP3609", "COMP3610", "COMP3611",
+                "COMP2606", "COMP3601", "COMP3609", "COMP3610", "COMP3611",
                 "INFO2602", "INFO2604", "INFO3604", "INFO3606", "INFO3607",
                 "INFO3608", "INFO3609", "INFO3610"
             };
@@ -39,6 +39,23 @@ public class DegreeProgram extends RequirementList {
     }
     
     public static DegreeProgram getDegreeProgramITMajor() {
-        return null;
+        if (IT_MAJOR == null) {
+            IT_MAJOR = new DegreeProgram("Major in Computer Science");
+            String requiredCourses[] = {
+                "INFO1600", "COMP1601", "COMP1602", "INFO1601", "INFO2601",
+                "INFO2602", "COMP2605", "INFO2600", "INFO2603", "INFO2604"
+            };
+            for (String code : requiredCourses)
+                IT_MAJOR.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+            String electiveCourses[] = {
+                "COMP3605", "INFO2605", "INFO3605", "MATH2250", "COMP3610",
+                "INFO3606", "INFO3607", "INFO3608", "INFO3609", "INFO3610"
+            };
+            Requirement electives = new RequirementOption(12);
+            for (String code : electiveCourses)
+                electives.addSubRequirement(CourseCatalog.getCatalog().getCourseByCode(code));
+            IT_MAJOR.addSubRequirement(electives);
+        }
+        return IT_MAJOR;
     }
 }
