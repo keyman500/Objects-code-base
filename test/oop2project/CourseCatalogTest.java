@@ -21,9 +21,10 @@ import static org.junit.Assert.*;
  * @author Marc
  */
 public class CourseCatalogTest {
-    CourseCatalog c;
-    Course course;
-    Map<String, Course> courses ;
+    CourseCatalog catalog;
+    Course c1;
+    Course c2;
+    Course c3;
     
     public CourseCatalogTest() {
     }
@@ -39,11 +40,13 @@ public class CourseCatalogTest {
     @Before
     public void setUp() {
         int[] semesters = new int[]{1};
-        this.courses = new HashMap<String, Course>();
-        this.course= new Course("COMP1601","Programing 1",3,1,semesters);
-        this.courses.put("COMP1601",course);
-        this.c  = new CourseCatalog(this.courses);
-        
+        Map<String, Course> courses = new HashMap<String, Course>();
+        this.c1 = new Course("COMP1601","Programing 1",3,1,semesters);
+        this.c2 = new Course("COMP1602","Programing 2",3,1,semesters);
+        this.c3 = new Course("COMP1603","Programing 3",3,1,semesters);
+        courses.put("COMP1601",this.c1);
+        courses.put("COMP1601",this.c2);
+        this.catalog  = new CourseCatalog(courses);
     }
     
     @After
@@ -56,10 +59,9 @@ public class CourseCatalogTest {
     @Test
     public void testGetAllCourses() {
         System.out.println("getAllCourses");
-        CourseCatalog instance = this.c;
-        List<Course> expResult = new ArrayList<>(this.courses.values());
-        List<Course> result = instance.getAllCourses();
-        assertEquals(expResult, result);
+        assertTrue(this.catalog.getAllCourses().contains(this.c1));
+        assertTrue(this.catalog.getAllCourses().contains(this.c2));
+        assertFalse(this.catalog.getAllCourses().contains(this.c3));
         // TODO review the generated test code and remove the default call to fail.
     
     }
@@ -70,12 +72,8 @@ public class CourseCatalogTest {
     @Test
     public void testGetCourseByCode() {
         System.out.println("getCourseByCode");
-        String courseCode = "COMP1601";
-        CourseCatalog instance = this.c;
-        Course expResult = this.course;
-        Course result = instance.getCourseByCode(courseCode);
-        assertEquals(expResult, result);
-   
+        assertTrue(this.catalog.getCourseByCode("COMP1601").equals(this.c1));
+        assertFalse(this.catalog.getCourseByCode("COMP1603").equals(this.c3));
     }
     
 }
