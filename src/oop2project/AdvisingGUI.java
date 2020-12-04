@@ -269,15 +269,15 @@ public class AdvisingGUI extends javax.swing.JFrame {
             this.advisor.setSemester(2);
         else if (this.jRadioButton3.isSelected())
             this.advisor.setSemester(3);
+        if (jComboBox2.getSelectedIndex() == 2)
+            this.advisor.setDegree(this.advisor.getDegrees().get(1));
+        else
+            this.advisor.setDegree(this.advisor.getDegrees().get(0));
         this.jList3.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = advisor.getRecommendation().split("\n");
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        if (jComboBox2.getSelectedIndex() == 2)
-            this.advisor.setDegree(this.advisor.getDegrees().get(1));
-        else
-            this.advisor.setDegree(this.advisor.getDegrees().get(0));
         parentPanel.removeAll();
         parentPanel.add(backPanel);
         parentPanel.repaint();
