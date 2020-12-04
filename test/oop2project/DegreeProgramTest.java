@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
  * @author Marc
  */
 public class DegreeProgramTest {
-    DegreeProgram p;
     CourseCatalog catalog;
     
     public DegreeProgramTest() {
@@ -37,7 +36,7 @@ public class DegreeProgramTest {
     @Before
     public void setUp() {
         String filePath ="src\\oop2project\\catalog.txt";
-              CatalogReader reader;
+        CatalogReader reader;
         try {
             reader = new CatalogReader(new Scanner(new File(filePath)));
         } catch (FileNotFoundException error) {
@@ -50,57 +49,26 @@ public class DegreeProgramTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testCreation() {
+        assertNotNull(DegreeProgram.getDegreeProgramCSMajor(this.catalog));
+        assertNotNull(DegreeProgram.getDegreeProgramITMajor(this.catalog));
+    }
+
     /**
      * Test of getName method, of class DegreeProgram.
      */
     @Test
     public void testGetName() {
         System.out.println("getName");
-        DegreeProgram instance = this.p;
-        instance.getDegreeProgramCSMajor(this.catalog);
-        String expResult = "Major in Computer Science";
-        String result = instance.getName();
-        assertEquals(expResult, result);
+        assertEquals(DegreeProgram.getDegreeProgramCSMajor(this.catalog).getName(), "Major in Computer Science");
     
     }
 
-    /**
-     * Test of getDegreeProgramCSMajor method, of class DegreeProgram.
-     */
     @Test
-    public void testGetDegreeProgramCSMajor() {
-        System.out.println("getDegreeProgramCSMajor");
-        CourseCatalog catalog = null;
-        DegreeProgram expResult = null;
-        DegreeProgram result = DegreeProgram.getDegreeProgramCSMajor(catalog);
-        assertEquals(expResult, result);
-
+    public void testIsFulfilledBy() {
+        assertTrue(DegreeProgram.getDegreeProgramCSMajor(this.catalog).isFulfilledBy(
+            this.catalog.getAllCourses()));
     }
 
-    /**
-     * Test of getDegreeProgramITMajor method, of class DegreeProgram.
-     */
-    @Test
-    public void testGetDegreeProgramITMajor() {
-        System.out.println("getDegreeProgramITMajor");
-        CourseCatalog catalog = null;
-        DegreeProgram expResult = null;
-        DegreeProgram result = DegreeProgram.getDegreeProgramITMajor(catalog);
-        assertEquals(expResult, result);
-  
-    }
-
-    /**
-     * Test of getDegreeProgramAMajor method, of class DegreeProgram.
-     */
-    @Test
-    public void testGetDegreeProgramAMajor() {
-        System.out.println("getDegreeProgramAMajor");
-        CourseCatalog catalog = null;
-        DegreeProgram expResult = null;
-        DegreeProgram result = DegreeProgram.getDegreeProgramAMajor(catalog);
-        assertEquals(expResult, result);
-
-    }
-    
 }

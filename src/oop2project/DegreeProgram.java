@@ -37,7 +37,8 @@ public class DegreeProgram extends RequirementList {
             CS_MAJOR = new DegreeProgram("Major in Computer Science");
             String requiredCourses[] = {
                 "COMP1600", "COMP1601", "COMP1602", "COMP1603", "COMP2601",
-                "COMP2602", "COMP2605", "COMP2611", "COMP2603", "COMP2604"
+                "COMP2602", "COMP2605", "COMP2611", "COMP2603", "COMP2604",
+                "FOUN1101", "FOUN1105", "FOUN1301"
             };
             for (String code : requiredCourses)
                 CS_MAJOR.addSubRequirement(catalog.getCourseByCode(code));
@@ -68,7 +69,8 @@ public class DegreeProgram extends RequirementList {
             IT_MAJOR = new DegreeProgram("Major in Computer Science");
             String requiredCourses[] = {
                 "INFO1600", "COMP1601", "COMP1602", "INFO1601", "INFO2601",
-                "INFO2602", "COMP2605", "INFO2600", "INFO2603", "INFO2604"
+                "INFO2602", "COMP2605", "INFO2600", "INFO2603", "INFO2604",
+                "FOUN1101", "FOUN1105", "FOUN1301"
             };
             for (String code : requiredCourses)
                 IT_MAJOR.addSubRequirement(catalog.getCourseByCode(code));
