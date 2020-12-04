@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,7 @@ public class RequirementOptionTest {
     Course c1;
     Course c2;
     Course c3;
-    public CourseTest() {
+    public RequirementOptionTest() {
     }
     
     @BeforeClass
@@ -76,7 +77,7 @@ public class RequirementOptionTest {
     @Test
     public void testAddSubRequirement() {
         assertFalse(this.reqOpt.isFulfilledBy(Arrays.asList(c3)));
-        assertTrue(this.noReq.addSubRequirement(c3));
+        assertTrue(this.reqOpt.addSubRequirement(c3));
         assertTrue(this.reqOpt.isFulfilledBy(Arrays.asList(c3)));
     }
     

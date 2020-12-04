@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,7 @@ public class RequirementListTest {
     Course c1;
     Course c2;
     Course c3;
-    public CourseTest() {
+    public RequirementListTest() {
     }
     
     @BeforeClass

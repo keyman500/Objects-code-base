@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -208,8 +209,8 @@ public class CourseTest {
      */
     @Test
     public void testHashCode() {
-        assertFalse(this.c1.hashCode() == this.c2.hashCode);
-        assertTrue(this.c1.hashCode() == this.c1.hashCode);
+        assertFalse(this.c1.hashCode() == this.c2.hashCode());
+        assertTrue(this.c1.hashCode() == this.c1.hashCode());
     }
  
 }

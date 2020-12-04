@@ -23,10 +23,10 @@ import static org.junit.Assert.*;
  *
  * @author Marc
  */
-public class CatalogReaderTest {
+public class CourseReaderTest {
     CatalogReader reader;
     
-    public CatalogReaderTest() {
+    public CourseReaderTest() {
     }
     
     @BeforeClass
