@@ -46,9 +46,9 @@ public class Recommender {
         Collections.sort(missingCourses, new CoursesLevelComparator());
         Collections.sort(missingOptionalCourses, new CoursesLevelComparator());
         //missingCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
-        //missingOptionalCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
+        missingOptionalCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
         int i = 0;
-        while (missingCourses.size() < 6 && i < missingOptionalCourses.size()) {
+        while (missingCourses.size() < 10 && i < missingOptionalCourses.size()) {
             if (!missingCourses.contains(missingOptionalCourses.get(i))) {
                 missingCourses.add(missingOptionalCourses.get(i));
             }
@@ -57,7 +57,8 @@ public class Recommender {
         //missingCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
         String results = missingCourses.stream()
                 .filter(course -> course.isAvailableIn(this.semester))
-                .limit(6)
+                .filter(course -> course.hasFulfilledPrerequisites(this.coursesCompleted))
+                .limit(10)
                 .map(course -> course.getCodeAndTitle() + "\n")
                 .reduce("", (a, b) -> a+b);
         return results;

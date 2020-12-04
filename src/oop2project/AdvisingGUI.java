@@ -30,8 +30,8 @@ public class AdvisingGUI extends javax.swing.JFrame {
         initComponents();
         this.jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = courses.stream()
-                    .sorted(new CoursesLevelComparator())
                     .map(c -> c.getCodeAndTitle())
+                    .sorted()
                     .toArray(String[]::new);
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -274,6 +274,10 @@ public class AdvisingGUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        if (jComboBox2.getSelectedIndex() == 2)
+            this.advisor.setDegree(this.advisor.getDegrees().get(1));
+        else
+            this.advisor.setDegree(this.advisor.getDegrees().get(0));
         parentPanel.removeAll();
         parentPanel.add(backPanel);
         parentPanel.repaint();

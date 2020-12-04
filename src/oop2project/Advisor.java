@@ -27,7 +27,7 @@ public class Advisor implements AdvisorFacade{
             return;
         }
         this.catalog = new CourseCatalog(reader.readAndGetCourses());
-        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor(this.catalog));
+        this.recommender = new Recommender(DegreeProgram.getDegreeProgramCSMajor(this.catalog));
   
     }
     
