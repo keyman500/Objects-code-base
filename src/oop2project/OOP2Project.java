@@ -20,7 +20,7 @@ public class OOP2Project {
     
     public OOP2Project(String filePath) {
         this.advisor = new Advisor(filePath);
-        this.gui = new AdvisingGUI();
+        this.gui = new AdvisingGUI(advisor);
         this.gui.setVisible(true);
     }
 

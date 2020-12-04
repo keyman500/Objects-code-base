@@ -39,6 +39,7 @@ public class Recommender {
      * @return
      */
     public String getRecommendations() {
+        //this.coursesCompleted.forEach(c -> System.out.println(c.getCodeAndTitle()));
         Requirement missingRequirements = this.degree.getMissingComponents(this.coursesCompleted);
         List<Course> missingCourses = new ArrayList<>(missingRequirements.getMissingCompulsoryCourses(this.coursesCompleted));
         List<Course> missingOptionalCourses = new ArrayList<>(missingRequirements.getMissingOptionalCourses(this.coursesCompleted));

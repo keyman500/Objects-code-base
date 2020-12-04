@@ -6,7 +6,10 @@
 package oop2project;
 
 import javax.swing.ListSelectionModel;
-
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 
@@ -15,12 +18,24 @@ import javax.swing.ListSelectionModel;
  * @author David
  */
 public class AdvisingGUI extends javax.swing.JFrame {
-
+    private AdvisorFacade advisor;
+    private List<Course> courses;
+    
     /**
      * Creates new form AdvisingGUI
      */
-    public AdvisingGUI() {
+    public AdvisingGUI(AdvisorFacade advisor) {
+        this.advisor = advisor;
+        this.courses = advisor.getCourses();
         initComponents();
+        this.jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = courses.stream()
+                    .sorted(new CoursesLevelComparator())
+                    .map(c -> c.getCodeAndTitle())
+                    .toArray(String[]::new);
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
     }
 
     /**
@@ -242,6 +257,23 @@ public class AdvisingGUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        //this.jList1.getSelectedValuesList().forEach(s -> System.out.println(s));
+        Set<String> selected = new HashSet<>(this.jList1.getSelectedValuesList());
+        this.advisor.setCoursesDone(
+                this.courses.stream()
+                        .filter(c -> selected.contains(c.getCodeAndTitle()))
+                        .collect(Collectors.toList()));
+        if (this.jRadioButton1.isSelected())
+            this.advisor.setSemester(1);
+        else if (this.jRadioButton2.isSelected())
+            this.advisor.setSemester(2);
+        else if (this.jRadioButton3.isSelected())
+            this.advisor.setSemester(3);
+        this.jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = advisor.getRecommendation().split("\n");
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         parentPanel.removeAll();
         parentPanel.add(backPanel);
         parentPanel.repaint();
@@ -299,7 +331,7 @@ public class AdvisingGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdvisingGUI().setVisible(true);
+                new AdvisingGUI(null).setVisible(true);
             }
         });
     }
