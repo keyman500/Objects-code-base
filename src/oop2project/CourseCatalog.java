@@ -11,6 +11,10 @@ import java.util.Map;
 public class CourseCatalog {
     private Map<String, Course> courses;
     
+    /**
+     *
+     * @param courses
+     */
     public CourseCatalog(Map<String, Course> courses) {
         this.courses = courses;
     }

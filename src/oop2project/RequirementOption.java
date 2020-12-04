@@ -13,6 +13,10 @@ public class RequirementOption implements Requirement {
     private int requiredCredits;
     private List<Requirement> options;
     
+    /**
+     *
+     * @param credits
+     */
     public RequirementOption(int credits) {
         this.requiredCredits = credits;
         this.options = new ArrayList<>();
@@ -23,6 +27,11 @@ public class RequirementOption implements Requirement {
         return this.getCreditsFulfilled(coursesCompleted) == this.requiredCredits;
     }
 
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public int getCreditsFulfilled(List<Course> coursesCompleted) {
         int fulfilledCredits = 0;
@@ -57,6 +66,11 @@ public class RequirementOption implements Requirement {
         return true;
     }
     
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
         return new HashSet<>();

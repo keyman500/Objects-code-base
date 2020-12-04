@@ -16,6 +16,10 @@ public class Recommender {
     private int semester;
     private List<Course> coursesCompleted;
     
+    /**
+     *
+     * @param degree
+     */
     public Recommender(DegreeProgram degree) {
         this.degree = degree;
         this.semester = 1;
@@ -30,6 +34,10 @@ public class Recommender {
         this.coursesCompleted = courses;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getRecommendations() {
         Requirement missingRequirements = this.degree.getMissingComponents(this.coursesCompleted);
         List<Course> missingCourses = new ArrayList<>(missingRequirements.getMissingCompulsoryCourses(this.coursesCompleted));

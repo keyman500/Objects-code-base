@@ -9,6 +9,9 @@ import java.util.Comparator;
 public class CoursesLevelComparator implements Comparator<Course> {
     @Override
     public int compare(Course c1, Course c2) {
-        return c1.getLevel() - c2.getLevel();
+        int levelCmp = Integer.compare(c1.getLevel(), c2.getLevel());
+        if (levelCmp != 0)
+            return levelCmp;
+        return c1.getCodeAndTitle().compareTo(c2.getCodeAndTitle());
     }
 }

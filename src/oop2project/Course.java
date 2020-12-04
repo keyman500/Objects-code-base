@@ -35,6 +35,11 @@ public class Course implements Requirement {
         return this.level;
     }
     
+    /**
+     *
+     * @param semester
+     * @return
+     */
     public boolean isAvailableIn(int semester) {
         for (int i = 0; i < this.availableSemesters.length; i++)
             if (this.availableSemesters[i] == semester)
@@ -42,6 +47,11 @@ public class Course implements Requirement {
         return false;
     }
 
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
     	return coursesCompleted.contains(this);
@@ -56,6 +66,11 @@ public class Course implements Requirement {
         }
     }
     
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public Requirement getMissingComponents(List<Course> coursesCompleted) {
     	if (this.isFulfilledBy(coursesCompleted)) {
@@ -65,6 +80,11 @@ public class Course implements Requirement {
         }
     }
 
+    /**
+     *
+     * @param requirement
+     * @return
+     */
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         return false;
@@ -89,10 +109,19 @@ public class Course implements Requirement {
         return courses;
     }
     
+    /**
+     *
+     * @param prerequisite
+     */
     public void addPrerequisite(Requirement prerequisite) {
         this.prerequisites.addSubRequirement(prerequisite);
     }
 
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     public boolean hasFulfilledPrerequisites(List<Course> coursesCompleted) {
     	return this.prerequisites.isFulfilledBy(coursesCompleted);
     }
@@ -101,6 +130,11 @@ public class Course implements Requirement {
     	return this.prerequisites.getMissingComponents(coursesCompleted);
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
   		if (o == this) {

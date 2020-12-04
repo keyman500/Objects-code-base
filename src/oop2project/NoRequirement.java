@@ -11,11 +11,21 @@ import java.util.HashSet;
  */
 public class NoRequirement implements Requirement {
 
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
         return true;
     }
 
+    /**
+     *
+     * @param coursesCompleted
+     * @return
+     */
     @Override
     public int getCreditsFulfilled(List<Course> coursesCompleted) {
         return 0;
@@ -26,6 +36,11 @@ public class NoRequirement implements Requirement {
         return this;
     }
 
+    /**
+     *
+     * @param requirement
+     * @return
+     */
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         return false;

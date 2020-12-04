@@ -15,6 +15,10 @@ public class DegreeProgram extends RequirementList {
         this.name = name;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }
@@ -64,6 +68,11 @@ public class DegreeProgram extends RequirementList {
         return IT_MAJOR;
     }
     
+    /**
+     *
+     * @param catalog
+     * @return
+     */
     public static DegreeProgram getDegreeProgramAMajor(CourseCatalog catalog) {
         if (A_MAJOR == null) {
             A_MAJOR = new DegreeProgram("Test Major");

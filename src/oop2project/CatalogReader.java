@@ -16,6 +16,10 @@ public class CatalogReader {
     private Map<Course, List<String>> prerequisites;
     private Map<Course, Integer> numPrerequisites;
     
+    /**
+     *
+     * @param scanner
+     */
     public CatalogReader(Scanner scanner) {
         this.scanner = scanner;
         this.courses = new HashMap<>();

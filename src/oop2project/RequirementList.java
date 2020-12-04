@@ -12,6 +12,9 @@ import java.util.Set;
 public class RequirementList implements Requirement {
     private List<Requirement> subrequirements;
     
+    /**
+     *
+     */
     public RequirementList() {
         this.subrequirements = new ArrayList<>();
     }
