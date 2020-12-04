@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +27,8 @@ public class RequirementOptionTest {
     RequirementOption reqOpt;
     Course c1;
     Course c2;
-    public CourseTest() {
+    Course c3;
+    public RequirementOptionTest() {
     }
     
     @BeforeClass
