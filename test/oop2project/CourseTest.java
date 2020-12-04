@@ -24,7 +24,8 @@ import static org.junit.Assert.*;
  */
 public class CourseTest {
     int[] semesters;
-    Course c;
+    Course c1;
+    Course c2;
     public CourseTest() {
     }
     
@@ -39,7 +40,8 @@ public class CourseTest {
     @Before
     public void setUp() {
         this.semesters = new int[]{1};
-        this.c = new Course("COMP1601","Programing 1",3,1,semesters);
+        this.c1 = new Course("COMP1601","Programing 1",3,1,semesters);
+        this.c2 = new Course("COMP0001","Intro to CS",3,1,semesters);
     }
     
     @After
@@ -52,7 +54,7 @@ public class CourseTest {
     @Test
     public void testGetCodeAndTitle() {
         System.out.println("getCodeAndTitle");
-        Course instance = this.c;
+        Course instance = this.c1;
         String expResult = "COMP1601 Programing 1";
         String result = instance.getCodeAndTitle();
         assertEquals(expResult, result);
@@ -66,7 +68,7 @@ public class CourseTest {
     @Test
     public void testGetLevel() {
         System.out.println("getLevel");
-        Course instance = this.c;
+        Course instance = this.c1;
         int expResult = 1;
         int result = instance.getLevel();
         assertEquals(expResult, result);
@@ -81,7 +83,7 @@ public class CourseTest {
     public void testIsAvailableIn() {
         System.out.println("isAvailableIn");
         int semester = 1;
-        Course instance = this.c;
+        Course instance = this.c1;
         boolean expResult = true;
         boolean result = instance.isAvailableIn(semester);
         assertEquals(expResult, result);
@@ -94,13 +96,9 @@ public class CourseTest {
      */
     @Test
     public void testIsFulfilledBy() {
-        System.out.println("isFulfilledBy");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        boolean expResult = true;
-        boolean result = instance.isFulfilledBy(coursesCompleted);
-        assertEquals(expResult, result);
+        assertTrue(this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
+        assertFalse(this.c1.isFulfilledBy(Arrays.toList(new Course[] {})));
+        assertFalse(this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c2})));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -110,13 +108,9 @@ public class CourseTest {
      */
     @Test
     public void testGetCreditsFulfilled() {
-        System.out.println("getCreditsFulfilled");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        int expResult = 3;
-        int result = instance.getCreditsFulfilled(coursesCompleted);
-        assertEquals(expResult, result);
+        assertEquals(3, this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
+        assertEquals(0, this.c1.isFulfilledBy(Arrays.toList(new Course[] {})));
+        assertEquals(0, this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c2})));
         // TODO review the generated test code and remove the default call to fail.
        
     }
@@ -126,12 +120,9 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingComponents() {
-        System.out.println("getMissingComponents");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        Requirement result = instance.getMissingComponents(coursesCompleted);
-        assertThat(result, instanceOf(NoRequirement.class));
+        assertTrue(
+            this.c1.getMissingComponents(Arrays.toList(new Course[] {}))
+                .isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -141,12 +132,7 @@ public class CourseTest {
      */
     @Test
     public void testAddSubRequirement() {
-        System.out.println("addSubRequirement");
-        Requirement requirement = null;
-        Course instance = this.c;
-        boolean expResult = false;
-        boolean result = instance.addSubRequirement(requirement);
-        assertEquals(expResult, result);
+        assertFalse(this.c1.addSubRequirement(this.c2));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -156,13 +142,9 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingCompulsoryCourses() {
-        System.out.println("getMissingCompulsoryCourses");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        Set<Course> expResult = new HashSet<>();;
-        Set<Course> result = instance.getMissingCompulsoryCourses(coursesCompleted);
-        assertEquals(expResult, result);
+        Set<Course> s = this.c1.getMissingCompulsoryCourses(Arrays.toList(new Course[] {}));
+        assertTrue(s.contains(c1));
+        assertFalse(s.contains(c2));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -172,13 +154,9 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingOptionalCourses() {
-        System.out.println("getMissingOptionalCourses");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        Set<Course> expResult = new HashSet<>();
-        Set<Course> result = instance.getMissingOptionalCourses(coursesCompleted);
-        assertEquals(expResult, result);
+        Set<Course> s = this.c1.getMissingOptionalCourses(Arrays.toList(new Course[] {}));
+        assertFalse(s.contains(c1));
+        assertFalse(s.contains(c2));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -190,13 +168,10 @@ public class CourseTest {
      */
     @Test
     public void testHasFulfilledPrerequisites() {
-        System.out.println("hasFulfilledPrerequisites");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        boolean expResult = true;
-        boolean result = instance.hasFulfilledPrerequisites(coursesCompleted);
-        assertEquals(expResult, result);
+        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {})));
+        this.c1.addPrerequisite(this.c2);
+        assertFalse(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {})));
+        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {this.c2})));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -206,12 +181,13 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingPrerequisites() {
-        System.out.println("getMissingPrerequisites");
-        List<Course> coursesCompleted = new ArrayList<Course>();
-        coursesCompleted.add(this.c);
-        Course instance = this.c;
-        Requirement result = instance.getMissingPrerequisites(coursesCompleted);
-        assertThat(result, instanceOf(NoRequirement.class));
+        assertTrue(
+            this.c1.getMissingComponents(Arrays.toList(new Course[] {this.c1}))
+                .isFulfilledBy(Arrays.toList(new Course[] {})));
+        this.c1.addPrerequisite(this.c2);
+        assertFalse(
+            this.c1.getMissingComponents(Arrays.toList(new Course[] {this.c1}))
+                .isFulfilledBy(Arrays.toList(new Course[] {})));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -221,12 +197,8 @@ public class CourseTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
-        Object o = new Course("COMP1601","Programing 1",3,1,semesters);;
-        Course instance = this.c;
-        boolean expResult = true;
-        boolean result = this.c.equals(o);
-        assertEquals(expResult, result);
+        assertFalse(this.c1.equals(this.c2));
+        assertTrue(this.c1.equals(this.c1));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -236,17 +208,8 @@ public class CourseTest {
      */
     @Test
     public void testHashCode() {
-        System.out.println("hashCode");
-        Course instance = this.c;
-        int hash = 7;
-        String code = this.c.getCodeAndTitle();
-             if(code.contains(" ")){
-        code= code.substring(0, code.indexOf(" ")); 
-             }
-        int expResult = 79 * hash + Objects.hashCode(code);
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        
+        assertFalse(this.c1.hashCode() == this.c2.hashCode);
+        assertTrue(this.c1.hashCode() == this.c1.hashCode);
     }
  
 }
