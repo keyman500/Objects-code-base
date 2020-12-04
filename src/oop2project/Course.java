@@ -140,6 +140,7 @@ public class Course implements Requirement {
     /**
      *
      * @param prerequisite
+     * @return
      */
     public void addPrerequisite(Requirement prerequisite) {
         this.prerequisites.addSubRequirement(prerequisite);
