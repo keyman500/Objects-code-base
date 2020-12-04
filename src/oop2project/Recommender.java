@@ -1,11 +1,8 @@
 package oop2project;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  *
@@ -34,19 +31,22 @@ public class Recommender {
         this.coursesCompleted = courses;
     }
     
+    public void setDegree(DegreeProgram degree) {
+        this.degree = degree;
+    }
+    
     /**
      *
      * @return
      */
     public String getRecommendations() {
-        //this.coursesCompleted.forEach(c -> System.out.println(c.getCodeAndTitle()));
         Requirement missingRequirements = this.degree.getMissingComponents(this.coursesCompleted);
         List<Course> missingCourses = new ArrayList<>(missingRequirements.getMissingCompulsoryCourses(this.coursesCompleted));
         List<Course> missingOptionalCourses = new ArrayList<>(missingRequirements.getMissingOptionalCourses(this.coursesCompleted));
         Collections.sort(missingCourses, new CoursesLevelComparator());
         Collections.sort(missingOptionalCourses, new CoursesLevelComparator());
         //missingCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
-        missingOptionalCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
+        //missingOptionalCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
         int i = 0;
         while (missingCourses.size() < 10 && i < missingOptionalCourses.size()) {
             if (!missingCourses.contains(missingOptionalCourses.get(i))) {

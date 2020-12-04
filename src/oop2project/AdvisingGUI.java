@@ -257,7 +257,6 @@ public class AdvisingGUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        //this.jList1.getSelectedValuesList().forEach(s -> System.out.println(s));
         Set<String> selected = new HashSet<>(this.jList1.getSelectedValuesList());
         this.advisor.setCoursesDone(
                 this.courses.stream()
