@@ -6,13 +6,13 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- *
+ * An empty sentinel Requirement class
  * @author Dion Recai
  */
 public class NoRequirement implements Requirement {
 
     /**
-     *
+     * Trivially fulfilled
      * @param coursesCompleted
      * @return
      */
@@ -22,7 +22,7 @@ public class NoRequirement implements Requirement {
     }
 
     /**
-     *
+     * No credits are awarded
      * @param coursesCompleted
      * @return
      */
@@ -31,13 +31,18 @@ public class NoRequirement implements Requirement {
         return 0;
     }
 
+    /**
+     * There are no missing components
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public Requirement getMissingComponents(List<Course> coursesCompleted) {
         return this;
     }
 
     /**
-     *
+     * Cannot add a subrequirement
      * @param requirement
      * @return
      */
@@ -46,11 +51,23 @@ public class NoRequirement implements Requirement {
         return false;
     }
     
+    /**
+     * 
+     * There are no missing courses
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
         return new HashSet<>();
     }
 
+    /**
+     * 
+     * There are no missing courses
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public Set<Course> getMissingOptionalCourses(List<Course> coursesCompleted) {
         return new HashSet<>();

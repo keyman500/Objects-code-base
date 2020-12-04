@@ -1,13 +1,16 @@
 package oop2project;
 
 /**
- *
+ * Represents a Degree Program entity
+ * Also acts as a singleton with two instances
+ * One instance for the CS Major Degree
+ * And another for the IT Major Degree
+ * Extends RequirementList since a DegreeProgram has a list of requirements
  * @author Dion Recai
  */
 public class DegreeProgram extends RequirementList {
     private static DegreeProgram CS_MAJOR;
     private static DegreeProgram IT_MAJOR;
-    private static DegreeProgram A_MAJOR;
     private String name;
     
     private DegreeProgram(String name) {
@@ -17,12 +20,18 @@ public class DegreeProgram extends RequirementList {
     
     /**
      *
-     * @return
+     * @return the name of the program
      */
     public String getName() {
         return this.name;
     }
     
+    /**
+     * Get the CS Major Degree program
+     * Initialize it if it has not already been
+     * @param catalog
+     * @return 
+     */
     public static DegreeProgram getDegreeProgramCSMajor(CourseCatalog catalog) {
         if (CS_MAJOR == null) {
             CS_MAJOR = new DegreeProgram("Major in Computer Science");
@@ -47,6 +56,13 @@ public class DegreeProgram extends RequirementList {
         return CS_MAJOR;
     }
     
+    /**
+     * 
+     * Get the IT Major Degree program
+     * Initialize it if it has not already been
+     * @param catalog
+     * @return 
+     */
     public static DegreeProgram getDegreeProgramITMajor(CourseCatalog catalog) {
         if (IT_MAJOR == null) {
             IT_MAJOR = new DegreeProgram("Major in Computer Science");
@@ -68,31 +84,4 @@ public class DegreeProgram extends RequirementList {
         return IT_MAJOR;
     }
     
-    /**
-     *
-     * @param catalog
-     * @return
-     */
-    public static DegreeProgram getDegreeProgramAMajor(CourseCatalog catalog) {
-        if (A_MAJOR == null) {
-            A_MAJOR = new DegreeProgram("Test Major");
-            String requiredCourses[] = {
-                "COMP1600", "COMP1601"
-            };
-            for (String code : requiredCourses) {
-                Course course = catalog.getCourseByCode(code);
-                A_MAJOR.addSubRequirement(course);
-            }
-            String electiveCourses[] = {
-                "COMP1602", "COMP1603"
-            };
-            Requirement electives = new RequirementOption(3);
-            for (String code : electiveCourses) {
-                Course course = catalog.getCourseByCode(code);
-                electives.addSubRequirement(course);
-            }
-            A_MAJOR.addSubRequirement(electives);
-        }
-        return A_MAJOR;
-    }
 }

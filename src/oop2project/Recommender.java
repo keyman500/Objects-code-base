@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
- * @author Dion Recai
+ * Provides recommendations
+ * @author Marc
  */
 public class Recommender {
     private DegreeProgram degree;
@@ -23,21 +23,36 @@ public class Recommender {
         this.coursesCompleted = new ArrayList<>();
     }
     
+    /**
+     * Set the semester on which you want to get recommendations for
+     * @param semester 
+     */
     public void setSemester(int semester) {
         this.semester = semester;
     }
     
+    /**
+     * Set the courses you have completed
+     * @param courses 
+     */
     public void setCoursesCompleted(List<Course> courses) {
         this.coursesCompleted = courses;
     }
     
+    /**
+     * Set the degree you want to get recommendations for
+     * @param degree 
+     */
     public void setDegree(DegreeProgram degree) {
         this.degree = degree;
     }
     
     /**
-     *
-     * @return
+     * Gets courses that you are still required to do and their prerequisites
+     * Sorts them somewhat according to relevance
+     * With compulsory courses given a higher priority
+     * And courses of a lower level also given a higher priority
+     * @return a string providing recommendations
      */
     public String getRecommendations() {
         Requirement missingRequirements = this.degree.getMissingComponents(this.coursesCompleted);
@@ -45,8 +60,6 @@ public class Recommender {
         List<Course> missingOptionalCourses = new ArrayList<>(missingRequirements.getMissingOptionalCourses(this.coursesCompleted));
         Collections.sort(missingCourses, new CoursesLevelComparator());
         Collections.sort(missingOptionalCourses, new CoursesLevelComparator());
-        //missingCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
-        //missingOptionalCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
         int i = 0;
         while (missingCourses.size() < 10 && i < missingOptionalCourses.size()) {
             if (!missingCourses.contains(missingOptionalCourses.get(i))) {
@@ -54,7 +67,6 @@ public class Recommender {
             }
             i++;
         }
-        //missingCourses.forEach(c -> System.out.println(c.getCodeAndTitle()));
         String results = missingCourses.stream()
                 .filter(course -> course.isAvailableIn(this.semester))
                 .filter(course -> course.hasFulfilledPrerequisites(this.coursesCompleted))

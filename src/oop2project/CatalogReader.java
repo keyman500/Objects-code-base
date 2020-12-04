@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
+ * Used to read a file containing data about available courses.
  * @author Dion Recai
  */
 public class CatalogReader {
@@ -17,8 +17,8 @@ public class CatalogReader {
     private Map<Course, Integer> numPrerequisites;
     
     /**
-     *
-     * @param scanner
+     * Constructs a CatalogReader
+     * @param scanner a scanner already attached to the data file
      */
     public CatalogReader(Scanner scanner) {
         this.scanner = scanner;
@@ -27,6 +27,10 @@ public class CatalogReader {
         this.numPrerequisites = new HashMap<>();
     }
     
+    /**
+     * Read the data file and return the list of all courses found.
+     * @return 
+     */
     public Map<String, Course> readAndGetCourses() {
         while (this.scanner.hasNext())
             this.readOneCourse();

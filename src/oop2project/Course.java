@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- *
+ * Represents a Course entity
  * @author Dion Recai
  */
 public class Course implements Requirement {
@@ -18,6 +18,14 @@ public class Course implements Requirement {
     private Requirement prerequisites;
     private int[] availableSemesters;
 
+    /**
+     *  Constructs a course
+     * @param courseCode
+     * @param courseTitle
+     * @param credits
+     * @param level
+     * @param semesters array of integers representing the semesters in which the course is available
+     */
     public Course(String courseCode, String courseTitle, int credits, int level, int[] semesters) {
             this.courseCode = courseCode;
             this.courseTitle = courseTitle;
@@ -27,6 +35,10 @@ public class Course implements Requirement {
             this.prerequisites = new RequirementList();
     }
     
+    /**
+     * 
+     * @return the concatenation of the course's code and title separated by a space
+     */
     public String getCodeAndTitle() {
         return this.courseCode + " " + this.courseTitle;
     }
@@ -36,7 +48,7 @@ public class Course implements Requirement {
     }
     
     /**
-     *
+     * Determine if the course is available in a semester
      * @param semester
      * @return
      */
@@ -48,7 +60,7 @@ public class Course implements Requirement {
     }
 
     /**
-     *
+     * Determine if a course has been completed
      * @param coursesCompleted
      * @return
      */
@@ -57,6 +69,11 @@ public class Course implements Requirement {
     	return coursesCompleted.contains(this);
     }
 
+    /**
+     * 
+     * @param coursesCompleted
+     * @return the number of the credits gained from this course
+     */
     @Override
     public int getCreditsFulfilled(List<Course> coursesCompleted) {
         if (this.isFulfilledBy(coursesCompleted)) {
@@ -67,7 +84,7 @@ public class Course implements Requirement {
     }
     
     /**
-     *
+     * 
      * @param coursesCompleted
      * @return
      */
@@ -81,15 +98,21 @@ public class Course implements Requirement {
     }
 
     /**
-     *
+     * A course does not have direct subrequirements
+     * Use addPrerequisite to add prerequisites
      * @param requirement
-     * @return
+     * @return false
      */
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         return false;
     }
     
+    /**
+     * 
+     * @param coursesCompleted
+     * @return a Requirement containing the course and compulsory prerequisites if it is not completed
+     */
     @Override
     public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
         Set<Course> courses = new HashSet<>();
@@ -100,6 +123,11 @@ public class Course implements Requirement {
         return courses;
     }
     
+    /**
+     * 
+     * @param coursesCompleted
+     * @return a Requirement containing all optional prerequisites if the course is not completed
+     */
     @Override
     public Set<Course> getMissingOptionalCourses(List<Course> coursesCompleted) {
         Set<Course> courses = new HashSet<>();
@@ -126,12 +154,17 @@ public class Course implements Requirement {
     	return this.prerequisites.isFulfilledBy(coursesCompleted);
     }
 
+    /**
+     * 
+     * @param coursesCompleted
+     * @return 
+     */
     public Requirement getMissingPrerequisites(List<Course> coursesCompleted) {
     	return this.prerequisites.getMissingComponents(coursesCompleted);
     }
 
     /**
-     *
+     * Compare equality based on course code
      * @param o
      * @return
      */
@@ -147,6 +180,10 @@ public class Course implements Requirement {
         return this.courseCode.equals(c.courseCode);
     }
 
+    /**
+     * Hash the course object based on its course code
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 7;

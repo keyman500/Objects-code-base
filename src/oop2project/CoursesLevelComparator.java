@@ -3,8 +3,9 @@ package oop2project;
 import java.util.Comparator;
 
 /**
- *
- * @author Dion Recai
+ * Compare courses according to their level then by code and title
+ * Used to pick best recommendations by choosing earlier level courses.
+ * @author Marc
  */
 public class CoursesLevelComparator implements Comparator<Course> {
     @Override

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * A requirement which with sub-requirements which are optional
+ * Only a specific number of credits from the sub-requirements must be fulfilled to meet this requirement
  * @author Dion Recai
  */
 public class RequirementOption implements Requirement {
@@ -14,23 +15,29 @@ public class RequirementOption implements Requirement {
     private List<Requirement> options;
     
     /**
-     *
-     * @param credits
+     * Construct a RequirementOption
+     * @param credits the number of credits required to meet this requirement
      */
     public RequirementOption(int credits) {
         this.requiredCredits = credits;
         this.options = new ArrayList<>();
     }
 
+    /**
+     * Checks if the requirement is fulfilled by checking if the number of credits matches the required number
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public boolean isFulfilledBy(List<Course> coursesCompleted) {
         return this.getCreditsFulfilled(coursesCompleted) == this.requiredCredits;
     }
 
     /**
-     *
+     * Get the number of credits from sub-requirements that are fulfilled
+     * Up to a maximum being the required number of credits needed to meet this requirement
      * @param coursesCompleted
-     * @return
+     * @return 
      */
     @Override
     public int getCreditsFulfilled(List<Course> coursesCompleted) {
@@ -47,6 +54,13 @@ public class RequirementOption implements Requirement {
         }
     }
 
+    /**
+     * Get the missing sub-requirements as a RequirementOption
+     * which contains the number of credits missing
+     * and the options which could be used ti make up those missing credits
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public Requirement getMissingComponents(List<Course> coursesCompleted) {
         if (this.isFulfilledBy(coursesCompleted)) {
@@ -60,6 +74,11 @@ public class RequirementOption implements Requirement {
         return missingRequirements;
     }
 
+    /**
+     * Add another optional sub-requirement
+     * @param requirement
+     * @return true
+     */
     @Override
     public boolean addSubRequirement(Requirement requirement) {
         this.options.add(requirement);
@@ -67,15 +86,20 @@ public class RequirementOption implements Requirement {
     }
     
     /**
-     *
+     * Since this class models optional sub-requirement there ar no compulsory courses
      * @param coursesCompleted
-     * @return
+     * @return an empty set
      */
     @Override
     public Set<Course> getMissingCompulsoryCourses(List<Course> coursesCompleted) {
         return new HashSet<>();
     }
 
+    /**
+     * Get all the courses which are part of pone of the optional sub-requirements
+     * @param coursesCompleted
+     * @return 
+     */
     @Override
     public Set<Course> getMissingOptionalCourses(List<Course> coursesCompleted) {
         Set<Course> courses = new HashSet<>();

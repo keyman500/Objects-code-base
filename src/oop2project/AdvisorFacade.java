@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Uses the Facade Pattern to hide the internals of the recommendation system.
- * @author Dion Recai
+ * @author Marc
  */
 public interface AdvisorFacade {
     /**
