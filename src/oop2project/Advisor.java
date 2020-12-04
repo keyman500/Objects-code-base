@@ -27,29 +27,39 @@ public class Advisor implements AdvisorFacade{
             return;
         }
         this.catalog = new CourseCatalog(reader.readAndGetCourses());
-        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor(this.catalog));
+        this.recommender = new Recommender(DegreeProgram.getDegreeProgramCSMajor(this.catalog));
   
     }
     
+    @Override
     public List<DegreeProgram> getDegrees(){
-        ArrayList<DegreeProgram> degrees = new ArrayList<DegreeProgram>(); 
+        ArrayList<DegreeProgram> degrees = new ArrayList<>(); 
         degrees.add(DegreeProgram.getDegreeProgramCSMajor(this.catalog));
         degrees.add(DegreeProgram.getDegreeProgramITMajor(this.catalog));
         return degrees;
     }
   
+    @Override
     public void setDegree(DegreeProgram degree){
-        this.recommender = new Recommender(degree);
+        this.recommender.setDegree(degree);
     }
+    
+    @Override
     public void setSemester(int semester){
         this.recommender.setSemester(semester);
     }
+    
+    @Override
     public List<Course> getCourses(){
         return this.catalog.getAllCourses();
     }
+    
+    @Override
     public void setCoursesDone(List<Course> courses){
         this.recommender.setCoursesCompleted(courses);
     }
+    
+    @Override
     public String getRecommendation(){
         return this.recommender.getRecommendations();
     }
