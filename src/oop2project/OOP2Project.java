@@ -15,19 +15,11 @@ import java.util.Scanner;
  * @author David
  */
 public class OOP2Project {
-    private CourseCatalog catalog;
-    private Recommender recommender;
+    private AdvisorFacade advisor;
     private AdvisingGUI gui;
     
     public OOP2Project(String filePath) {
-        CatalogReader reader;
-        try {
-            reader = new CatalogReader(new Scanner(new File(filePath)));
-        } catch (FileNotFoundException error) {
-            return;
-        }
-        this.catalog = new CourseCatalog(reader.readAndGetCourses());
-        this.recommender = new Recommender(DegreeProgram.getDegreeProgramAMajor(this.catalog));
+        this.advisor = new Advisor(filePath);
         this.gui = new AdvisingGUI();
         this.gui.setVisible(true);
     }
