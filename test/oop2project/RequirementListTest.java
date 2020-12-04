@@ -54,34 +54,34 @@ public class RequirementListTest {
 
     @Test
     public void testIsFulfilledBy() {
-        assertTrue(this.reqList.isFulfilledBy(Arrays.toList(new Course[] {c1, c2})));
-        assertFalse(this.reqList.isFulfilledBy(Arrays.toList(new Course[] {c1})));
+        assertTrue(this.reqList.isFulfilledBy(Arrays.asList(c1, c2)));
+        assertFalse(this.reqList.isFulfilledBy(Arrays.asList(c1)));
     }
     
     @Test
     public void testGetCreditsFulfilled() {
-        assertEquals(6, this.reqList.getCreditsFulfilled(Arrays.toList(new Course[] {c1, c2})));
-        assertEquals(3, this.reqList.getCreditsFulfilled(Arrays.toList(new Course[] {c1})));
+        assertEquals(6, this.reqList.getCreditsFulfilled(Arrays.asList(c1, c2)));
+        assertEquals(3, this.reqList.getCreditsFulfilled(Arrays.asList(c1)));
     }
 
     @Test
     public void testGetMissingComponents() {
         assertTrue(
-            this.reqList.getMissingComponents(Arrays.toList(new Course[] {c1}))
-                .isFulfilledBy(Arrays.toList(new Course[] {c2})));
+            this.reqList.getMissingComponents(Arrays.asList(c1))
+                .isFulfilledBy(Arrays.asList(c2)));
 
     }
 
     @Test
     public void testAddSubRequirement() {
         assertTrue(this.reqList.addSubRequirement(c3));
-        assertFalse(this.reqList.isFulfilledBy(Arrays.toList(new Course[] {c1, c2})));
-        assertTrue(this.reqList.isFulfilledBy(Arrays.toList(new Course[] {c1, c2, c3})));
+        assertFalse(this.reqList.isFulfilledBy(Arrays.asList(c1, c2)));
+        assertTrue(this.reqList.isFulfilledBy(Arrays.asList(c1, c2, c3)));
     }
     
     @Test
     public void testGetMissingCompulsoryCourses() {
-        Set<Course> s = this.reqList.getMissingCompulsoryCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.reqList.getMissingCompulsoryCourses(Arrays.asList());
         assertTrue(s.contains(c1));
         assertTrue(s.contains(c2));
         assertFalse(s.contains(c3));
@@ -89,7 +89,7 @@ public class RequirementListTest {
 
     @Test
     public void tesGetMissingOptionalCourses() {
-        Set<Course> s = this.reqList.getMissingOptionalCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.reqList.getMissingOptionalCourses(Arrays.asList());
         assertFalse(s.contains(c1));
         assertFalse(s.contains(c2));
         assertFalse(s.contains(c3));
