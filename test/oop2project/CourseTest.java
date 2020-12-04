@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -96,9 +97,9 @@ public class CourseTest {
      */
     @Test
     public void testIsFulfilledBy() {
-        assertTrue(this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
-        assertFalse(this.c1.isFulfilledBy(Arrays.toList(new Course[] {})));
-        assertFalse(this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c2})));
+        assertTrue(this.c1.isFulfilledBy(Arrays.asList(this.c1)));
+        assertFalse(this.c1.isFulfilledBy(Arrays.asList()));
+        assertFalse(this.c1.isFulfilledBy(Arrays.asList(this.c2)));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -108,9 +109,9 @@ public class CourseTest {
      */
     @Test
     public void testGetCreditsFulfilled() {
-        assertEquals(3, this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
-        assertEquals(0, this.c1.isFulfilledBy(Arrays.toList(new Course[] {})));
-        assertEquals(0, this.c1.isFulfilledBy(Arrays.toList(new Course[] {this.c2})));
+        assertEquals(3, this.c1.getCreditsFulfilled(Arrays.asList(this.c1)));
+        assertEquals(0, this.c1.getCreditsFulfilled(Arrays.asList()));
+        assertEquals(0, this.c1.getCreditsFulfilled(Arrays.asList(this.c2)));
         // TODO review the generated test code and remove the default call to fail.
        
     }
@@ -121,8 +122,8 @@ public class CourseTest {
     @Test
     public void testGetMissingComponents() {
         assertTrue(
-            this.c1.getMissingComponents(Arrays.toList(new Course[] {}))
-                .isFulfilledBy(Arrays.toList(new Course[] {this.c1})));
+            this.c1.getMissingComponents(Arrays.asList())
+                .isFulfilledBy(Arrays.asList(this.c1)));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -142,7 +143,7 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingCompulsoryCourses() {
-        Set<Course> s = this.c1.getMissingCompulsoryCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.c1.getMissingCompulsoryCourses(Arrays.asList());
         assertTrue(s.contains(c1));
         assertFalse(s.contains(c2));
         // TODO review the generated test code and remove the default call to fail.
@@ -154,7 +155,7 @@ public class CourseTest {
      */
     @Test
     public void testGetMissingOptionalCourses() {
-        Set<Course> s = this.c1.getMissingOptionalCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.c1.getMissingOptionalCourses(Arrays.asList());
         assertFalse(s.contains(c1));
         assertFalse(s.contains(c2));
         // TODO review the generated test code and remove the default call to fail.
@@ -168,10 +169,10 @@ public class CourseTest {
      */
     @Test
     public void testHasFulfilledPrerequisites() {
-        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {})));
+        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.asList()));
         this.c1.addPrerequisite(this.c2);
-        assertFalse(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {})));
-        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.toList(new Course[] {this.c2})));
+        assertFalse(this.c1.hasFulfilledPrerequisites(Arrays.asList()));
+        assertTrue(this.c1.hasFulfilledPrerequisites(Arrays.asList(this.c2)));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -182,12 +183,12 @@ public class CourseTest {
     @Test
     public void testGetMissingPrerequisites() {
         assertTrue(
-            this.c1.getMissingComponents(Arrays.toList(new Course[] {this.c1}))
-                .isFulfilledBy(Arrays.toList(new Course[] {})));
+            this.c1.getMissingPrerequisites(Arrays.asList(this.c1))
+                .isFulfilledBy(Arrays.asList()));
         this.c1.addPrerequisite(this.c2);
         assertFalse(
-            this.c1.getMissingComponents(Arrays.toList(new Course[] {this.c1}))
-                .isFulfilledBy(Arrays.toList(new Course[] {})));
+            this.c1.getMissingPrerequisites(Arrays.asList(this.c1))
+                .isFulfilledBy(Arrays.asList()));
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -208,8 +209,8 @@ public class CourseTest {
      */
     @Test
     public void testHashCode() {
-        assertFalse(this.c1.hashCode() == this.c2.hashCode);
-        assertTrue(this.c1.hashCode() == this.c1.hashCode);
+        assertFalse(this.c1.hashCode() == this.c2.hashCode());
+        assertTrue(this.c1.hashCode() == this.c1.hashCode());
     }
  
 }

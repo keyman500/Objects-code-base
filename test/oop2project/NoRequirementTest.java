@@ -6,6 +6,7 @@
 package oop2project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +27,8 @@ public class NoRequirementTest {
     NoRequirement noReq;
     Course c1;
     Course c2;
-    public CourseTest() {
+    Course c3;
+    public NoRequirementTest() {
     }
     
     @BeforeClass
@@ -49,22 +51,22 @@ public class NoRequirementTest {
 
     @Test
     public void testIsFulfilledBy() {
-        assertTrue(this.noReq.isFulfilledBy(Arrays.toList(new Course[] {c1})));
-        assertTrue(this.noReq.isFulfilledBy(Arrays.toList(new Course[] {})));
+        assertTrue(this.noReq.isFulfilledBy(Arrays.asList(c1)));
+        assertTrue(this.noReq.isFulfilledBy(Arrays.asList()));
     }
     
     @Test
     public void testGetCreditsFulfilled() {
-        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.toList(new Course[] {c1, c2})));
-        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.toList(new Course[] {c1})));
-        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.toList(new Course[] {})));
+        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.asList(c1, c2)));
+        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.asList(c1)));
+        assertEquals(0, this.noReq.getCreditsFulfilled(Arrays.asList()));
     }
 
     @Test
     public void testGetMissingComponents() {
         assertTrue(
-            this.noReq.getMissingComponents(Arrays.toList(new Course[] {}))
-                .isFulfilledBy(Arrays.toList(new Course[] {})));
+            this.noReq.getMissingComponents(Arrays.asList())
+                .isFulfilledBy(Arrays.asList()));
 
     }
 
@@ -75,7 +77,7 @@ public class NoRequirementTest {
     
     @Test
     public void testGetMissingCompulsoryCourses() {
-        Set<Course> s = this.noReq.getMissingCompulsoryCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.noReq.getMissingCompulsoryCourses(Arrays.asList());
         assertFalse(s.contains(c1));
         assertFalse(s.contains(c2));
         assertFalse(s.contains(c3));
@@ -83,7 +85,7 @@ public class NoRequirementTest {
 
     @Test
     public void tesGetMissingOptionalCourses() {
-        Set<Course> s = this.noReq.getMissingOptionalCourses(Arrays.toList(new Course[] {}));
+        Set<Course> s = this.noReq.getMissingOptionalCourses(Arrays.asList());
         assertFalse(s.contains(c1));
         assertFalse(s.contains(c2));
         assertFalse(s.contains(c3));
