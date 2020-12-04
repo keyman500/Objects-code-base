@@ -108,9 +108,9 @@ public class CourseTest {
      */
     @Test
     public void testGetCreditsFulfilled() {
-        assertEquals(3, this.c1.isFulfilledBy(Arrays.asList(this.c1)));
-        assertEquals(0, this.c1.isFulfilledBy(Arrays.asList()));
-        assertEquals(0, this.c1.isFulfilledBy(Arrays.asList(this.c2)));
+        assertEquals(3, this.c1.getCreditsFulfilled(Arrays.asList(this.c1)));
+        assertEquals(0, this.c1.getCreditsFulfilled(Arrays.asList()));
+        assertEquals(0, this.c1.getCreditsFulfilled(Arrays.asList(this.c2)));
         // TODO review the generated test code and remove the default call to fail.
        
     }
@@ -182,11 +182,11 @@ public class CourseTest {
     @Test
     public void testGetMissingPrerequisites() {
         assertTrue(
-            this.c1.getMissingComponents(Arrays.asList(this.c1))
+            this.c1.getMissingPrerequisites(Arrays.asList(this.c1))
                 .isFulfilledBy(Arrays.asList()));
         this.c1.addPrerequisite(this.c2);
         assertFalse(
-            this.c1.getMissingComponents(Arrays.asList(this.c1))
+            this.c1.getMissingPrerequisites(Arrays.asList(this.c1))
                 .isFulfilledBy(Arrays.asList()));
         // TODO review the generated test code and remove the default call to fail.
         
