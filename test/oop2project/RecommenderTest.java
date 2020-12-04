@@ -5,11 +5,16 @@
  */
 package oop2project;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.steam.Collectors;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,9 +43,14 @@ public class RecommenderTest {
     
     @Before
     public void setUp() {
-        this.catalog = new Catalog(
+        try{
+        this.catalog = new CourseCatalog(
                 new CatalogReader(new Scanner(new File("src\\oop2project\\catalog.txt")))
-                .readAndGetCourses())
+                .readAndGetCourses());}
+        catch (FileNotFoundException error) {
+            return;
+        }
+        
         this.rec = new Recommender(DegreeProgram.getDegreeProgramCSMajor(this.catalog));
         this.rec.setSemester(2);
     }
@@ -55,11 +65,11 @@ public class RecommenderTest {
     @Test
     public void testRecommendations() {
         this.rec.setCoursesCompleted(
-            this.cataglog.getAllCourses().stream().filter(c -> c.getLevel() == 1)
+            this.catalog.getAllCourses().stream().filter(c -> c.getLevel() == 1)
             .collect(Collectors.toList()));
         assertTrue(Arrays.asList(this.rec.getRecommendations().split("\n")).stream()
             .map(s -> this.catalog.getCourseByCode(s.substring(0, 8)))
-            .allMatch(c -> c.getLevel() > 1 && c.getSemester() == 2));
+            .allMatch(c -> c.getLevel() > 1 && c.getLevel() == 2));
         // TODO review the generated test code and remove the default call to fail.
     
     }
