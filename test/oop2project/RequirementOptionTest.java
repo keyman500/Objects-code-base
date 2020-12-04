@@ -26,6 +26,7 @@ public class RequirementOptionTest {
     RequirementOption reqOpt;
     Course c1;
     Course c2;
+    Course c3;
     public CourseTest() {
     }
     

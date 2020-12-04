@@ -26,6 +26,7 @@ public class RequirementListTest {
     RequirementList reqList;
     Course c1;
     Course c2;
+    Course c3;
     public CourseTest() {
     }
     

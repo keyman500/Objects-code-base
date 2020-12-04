@@ -26,6 +26,7 @@ public class NoRequirementTest {
     NoRequirement noReq;
     Course c1;
     Course c2;
+    Course c3;
     public CourseTest() {
     }
     
