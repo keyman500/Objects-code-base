@@ -75,13 +75,13 @@ public class RequirementOptionTest {
     @Test
     public void testAddSubRequirement() {
         assertFalse(this.reqOpt.isFulfilledBy(Arrays.toList(new Course[] {c3})));
-        this.reqOpt.addSubRequirement(c3);
+        assertTrue(this.noReq.addSubRequirement(c3));
         assertTrue(this.reqOpt.isFulfilledBy(Arrays.toList(new Course[] {c3})));
     }
     
     @Test
     public void testGetMissingCompulsoryCourses() {
-        Set<Course> s = this.reqOpt.getMissingCompulsoryCourses(coursesCompleted);
+        Set<Course> s = this.reqOpt.getMissingCompulsoryCourses(Arrays.toList(new Course[] {}));
         assertFalse(s.contains(c1));
         assertFalse(s.contains(c2));
         assertFalse(s.contains(c3));
@@ -89,7 +89,7 @@ public class RequirementOptionTest {
 
     @Test
     public void tesGetMissingOptionalCourses() {
-        Set<Course> s = this.reqOpt.getMissingOptionalCourses(coursesCompleted);
+        Set<Course> s = this.reqOpt.getMissingOptionalCourses(Arrays.toList(new Course[] {}));
         assertTrue(s.contains(c1));
         assertTrue(s.contains(c2));
         assertFalse(s.contains(c3));
